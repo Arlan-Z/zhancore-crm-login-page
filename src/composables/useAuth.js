@@ -11,7 +11,6 @@ export default function useAuth() {
 
   const login = async (email, password) => {
     // Placeholder for future backend call
-    // Your teammate will replace this block ↓ with a real API request
     /*
       Example:
       const response = await fetch('/api/login', {
@@ -25,7 +24,6 @@ export default function useAuth() {
       isLoggedIn.value = true
     */
 
-    // Temporary mock logic (works for now)
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (email === 'admin@example.com' && password === '123456') {
