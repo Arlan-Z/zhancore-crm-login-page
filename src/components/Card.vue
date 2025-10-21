@@ -1,0 +1,22 @@
+<template>
+  <div class="login-card">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Card'
+}
+</script>
+
+<style scoped>
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+}
+</style>
