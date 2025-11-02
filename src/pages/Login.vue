@@ -1,5 +1,7 @@
 <template>
   <div class="login-container">
+    <Logo class="zhancore-logo"/>
+
     <Card>
       <div class="login-header">
         <p>Please provide your credentials</p>
@@ -30,49 +32,43 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import Card from "../components/Card.vue";
 import FormInput from "../components/FormInput.vue";
+import Logo from "@/components/Logo.vue";
 
-export default {
-  components: { Card, FormInput },
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const emailError = ref("");
-    const passwordError = ref("");
-    const loading = ref(false);
-    const success = ref(false);
+const email = ref("");
+const password = ref("");
+const emailError = ref("");
+const passwordError = ref("");
+const loading = ref(false);
+const success = ref(false);
 
-    const handleLogin = () => {
-      emailError.value = "";
-      passwordError.value = "";
+const handleLogin = () => {
+  emailError.value = "";
+  passwordError.value = "";
 
-      if (!email.value) emailError.value = "Email required";
-      if (!password.value) passwordError.value = "Password required";
-      if (emailError.value || passwordError.value) return;
+  if (!email.value) emailError.value = "Email required";
+  if (!password.value) passwordError.value = "Password required";
+  if (emailError.value || passwordError.value) return;
 
-      loading.value = true;
+  loading.value = true;
 
-      setTimeout(() => {
-        const users = JSON.parse(localStorage.getItem("users") || "[]");
-        const user = users.find(
-          (u) => u.email === email.value && u.password === password.value
-        );
+  setTimeout(() => {
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(
+      (u) => u.email === email.value && u.password === password.value
+    );
 
-        loading.value = false;
+    loading.value = false;
 
-        if (user) {
-          success.value = true;
-        } else {
-          passwordError.value = "Invalid email or password";
-        }
-      }, 1000);
-    };
-
-    return { email, password, emailError, passwordError, loading, success, handleLogin };
-  },
+    if (user) {
+      success.value = true;
+    } else {
+      passwordError.value = "Invalid email or password";
+    }
+  }, 1000);
 };
 </script>
 
@@ -80,7 +76,15 @@ export default {
 .login-container {
   width: 100%;
   max-width: 400px;
-  margin: auto;
+  margin: 24px auto 0;         
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.zhancore-logo {
+  width: 300px;
+  align-self: center;
 }
 
 .login-header {
@@ -112,6 +116,8 @@ export default {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .login-btn:hover {
@@ -146,34 +152,6 @@ export default {
 
 .login-btn.loading .btn-loader {
   opacity: 1;
-}
-
-.success-message {
-  display: none;
-  text-align: center;
-  padding: 24px 12px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-}
-
-.success-message.show {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.success-icon {
-  width: 50px;
-  height: 50px;
-  background: #22c55e;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: white;
-  margin: 0 auto 16px;
 }
 
 @keyframes spin {

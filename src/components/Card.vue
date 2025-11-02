@@ -17,5 +17,6 @@ export default {
   padding: 2rem;
   max-width: 400px;
   margin: auto;
+  align-self: center;
 }
 </style>
