@@ -18,6 +18,10 @@
   --darker-blue-color: #3f4e85;
   --black-blue-color: #2e3141;
   --bg-light-color: #f5f6fa;
+
+  --bg-grad-1: #f5f6fa;
+  --bg-grad-2: #3f4e85; 
+  --bg-grad-3: #2e3141;
 }
 
 * {
@@ -28,8 +32,21 @@
 }
 
 body {
-  background: var(--bg-light-color);
+  background: linear-gradient(120deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3));
+  background-size: 200% 200%;
+  animation: bg-pan 22s ease-in-out infinite;
+
   min-height: 100vh;
   padding: 20px;
   line-height: 1.6;
+}
+
+@keyframes bg-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
