@@ -12,7 +12,6 @@
       />
       <label :for="id" :class="{ active: isActive }">{{ label }}</label>
 
-      <!-- Password visibility toggle -->
       <button
         v-if="type === 'password'"
         type="button"
@@ -21,9 +20,8 @@
       >
         {{ showPassword ? '🙈' : '👁️' }}
       </button>
-
-      <span class="focus-border"></span>
     </div>
+
     <span class="error-message" v-if="error">{{ error }}</span>
   </div>
 </template>
@@ -57,9 +55,7 @@ export default {
       { immediate: true }
     )
 
-    const togglePassword = () => {
-      showPassword.value = !showPassword.value
-    }
+    const togglePassword = () => (showPassword.value = !showPassword.value)
 
     return { isActive, showPassword, onFocus, onBlur, togglePassword }
   }
@@ -79,37 +75,36 @@ export default {
 
 input {
   width: 100%;
-  padding: 16px 40px 8px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  color: white;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  background: white;
   outline: none;
-  transition: border 0.3s;
+  transition: border-color 0.2s ease;
 }
 
 input:focus {
-  border-color: #00bcd4;
+  border-color: var(--dark-blue-color);
 }
 
 label {
   position: absolute;
-  left: 16px;
-  top: 16px;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
+  left: 12px;
+  top: 12px;
+  font-size: 0.95rem;
+  color: #777;
+  background: white;
+  padding: 0 4px;
   pointer-events: none;
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 }
 
 label.active {
   top: -8px;
-  left: 12px;
-  font-size: 0.85rem;
-  color: #00bcd4;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0 4px;
-  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--dark-blue-color);
 }
 
 .password-toggle {
@@ -118,18 +113,18 @@ label.active {
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.2rem;
+  color: #555;
+  font-size: 1rem;
 }
 
 .error-message {
   display: block;
   margin-top: 4px;
-  color: #ff6b6b;
+  color: #e63946;
   font-size: 0.85rem;
 }
 
 .has-error input {
-  border-color: #ff6b6b;
+  border-color: #e63946;
 }
 </style>

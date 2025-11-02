@@ -2,8 +2,7 @@
   <div class="login-container">
     <Card>
       <div class="login-header">
-        <h2>Welcome Back</h2>
-        <p>Sign in to your account</p>
+        <p>Please provide your credentials</p>
       </div>
 
       <form @submit.prevent="handleLogin">
@@ -22,17 +21,11 @@
           :error="passwordError"
         />
 
-        <button type="submit" class="login-btn btn" :class="{ loading }">
+        <button type="submit" class="login-btn" :class="{ loading }">
           <span class="btn-text">{{ loading ? "Signing in..." : "Sign In" }}</span>
           <span class="btn-loader"></span>
         </button>
       </form>
-
-      <div class="success-message" :class="{ show: success }">
-        <div class="success-icon">✓</div>
-        <h3>Login Successful!</h3>
-        <p>Redirecting to your dashboard...</p>
-      </div>
     </Card>
   </div>
 </template>
@@ -86,67 +79,59 @@ export default {
 <style scoped>
 .login-container {
   width: 100%;
-  max-width: 420px;
-  perspective: 1000px;
+  max-width: 400px;
+  margin: auto;
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .login-header h2 {
-  color: white;
-  font-size: 2rem;
+  color: var(--darker-blue-color);
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
 }
 
 .login-header p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
+  color: #666;
+  font-size: 0.95rem;
 }
 
-.btn {
-  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+.login-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background-color: var(--dark-blue-color);
   border: none;
-  border-radius: 12px;
-  padding: 16px 24px;
+  border-radius: 8px;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+.login-btn:hover {
+  background-color: var(--blue-color);
+  transform: translateY(-1px);
 }
 
-.btn.loading {
+.login-btn.loading {
   pointer-events: none;
+  opacity: 0.7;
 }
 
-.btn-text {
-  transition: opacity 0.3s ease;
-}
-
+/* Loader */
 .btn-loader {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border: 2px solid transparent;
   border-top: 2px solid white;
   border-radius: 50%;
@@ -155,21 +140,21 @@ export default {
   transition: opacity 0.3s ease;
 }
 
-.btn.loading .btn-text {
+.login-btn.loading .btn-text {
   opacity: 0;
 }
 
-.btn.loading .btn-loader {
+.login-btn.loading .btn-loader {
   opacity: 1;
 }
 
 .success-message {
   display: none;
   text-align: center;
-  padding: 40px 20px;
+  padding: 24px 12px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(10px);
+  transition: all 0.4s ease;
 }
 
 .success-message.show {
@@ -179,37 +164,16 @@ export default {
 }
 
 .success-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: #22c55e;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   color: white;
-  margin: 0 auto 20px;
-  animation: successPulse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.signup-link {
-  text-align: center;
-}
-
-.signup-link p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-}
-
-.signup-link a {
-  color: #06b6d4;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.signup-link a:hover {
-  color: white;
+  margin: 0 auto 16px;
 }
 
 @keyframes spin {
@@ -221,21 +185,9 @@ export default {
   }
 }
 
-@keyframes successPulse {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 @media (max-width: 480px) {
   .login-header h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
 }
 </style>
