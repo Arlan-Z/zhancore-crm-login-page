@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 .login-card {
-  background: rgba(255, 255, 255, 0.15);
+  background-color: var(--black-blue-color);
   border-radius: 15px;
   backdrop-filter: blur(10px);
   padding: 2rem;
